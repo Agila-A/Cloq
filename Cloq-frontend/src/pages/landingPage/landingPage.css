@@ -1,0 +1,61 @@
+.landing {
+  background: #0d0d0d;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+width: 100%;
+}
+
+.landing-content {
+  text-align: center;
+}
+
+.landing-content h1 {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.landing-content p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #bbbbbb;
+}
+
+.landing-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.login-btn,
+.signup-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.login-btn {
+  background: #4a8cff;
+  color: white;
+}
+
+.login-btn:hover {
+  background: #3371e3;
+}
+
+.signup-btn {
+  background: #ff5c5c;
+  color: white;
+}
+
+.signup-btn:hover {
+  background: #e44949;
+}
