@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment variables (VERY IMPORTANT)
+.env
+.env.local
+
+# Build / temp files
+dist/
+temp/
+tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Runtime data
+coverage
+*.pid
+*.seed
+*.env.test
+
+# MongoDB dump files
+dump/
