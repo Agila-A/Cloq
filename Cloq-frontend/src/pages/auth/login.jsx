@@ -1,5 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 export default function Login() {
@@ -9,6 +11,7 @@ export default function Login() {
   });
 
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -21,13 +24,16 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        formData
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.masterPassword
       );
 
-      localStorage.setItem("token", res.data.token);
-      setMessage("Login successful!");
+      const token = await userCredential.user.getIdToken();
+      localStorage.setItem("firebaseToken", token);
+
+      navigate("/dashboard"); // ✅ redirect
     } catch (error) {
       console.error(error);
       setMessage("Invalid credentials");

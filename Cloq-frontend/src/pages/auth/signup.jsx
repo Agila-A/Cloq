@@ -1,15 +1,17 @@
 import { useState } from "react";
-import axios from "axios";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 import "./signup.css";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     masterPassword: "",
   });
 
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -22,15 +24,16 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
-        formData
+      await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.masterPassword
       );
 
-      setMessage(res.data.message);
+      navigate("/dashboard"); // ✅ redirect
     } catch (error) {
       console.error(error);
-      setMessage("Signup failed. Try again.");
+      setMessage(error.message);
     }
   };
 
@@ -38,14 +41,6 @@ export default function Signup() {
     <div className="auth-container">
       <form className="auth-card" onSubmit={handleSignup}>
         <h2>Create Account</h2>
-
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          onChange={handleChange}
-          required
-        />
 
         <input
           type="email"

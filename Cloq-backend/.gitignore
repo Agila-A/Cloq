@@ -37,3 +37,4 @@ coverage
 
 # MongoDB dump files
 dump/
+config/firebaseAdmin.json
