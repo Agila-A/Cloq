@@ -1,0 +1,41 @@
+/* CountdownTimer */
+.countdown {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+.cd-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(10,17,32,.8);
+  border: 1px solid rgba(100,116,139,.3);
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 38px;
+}
+.cd-block span:first-child {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: #60a5fa;
+  line-height: 1;
+}
+.cd-unit {
+  font-size: 9px;
+  color: #475569;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.cd-sep {
+  color: #334155;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cd-unlocked {
+  font-size: 13px;
+  font-weight: 600;
+  color: #34d399;
+}

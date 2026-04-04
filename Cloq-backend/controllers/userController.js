@@ -7,11 +7,7 @@ export const ensureUserExists = async (req, res, next) => {
     let user = await User.findOne({ firebaseUid: uid });
 
     if (!user) {
-      user = await User.create({
-        firebaseUid: uid,
-        email,
-        vault: [],
-      });
+      user = await User.create({ firebaseUid: uid, email });
     }
 
     req.dbUser = user;

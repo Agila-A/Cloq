@@ -1,21 +1,40 @@
 import crypto from "crypto";
+import dotenv from "dotenv";
 
-const algorithm = "aes-256-cbc";
-const iv = Buffer.alloc(16, 0);
+dotenv.config();
 
-const encrypt = (text) => {
-  const secret = process.env.CRYPTO_SECRET;
+// ENCRYPTION_KEY must be 32 bytes.
+const ENCRYPTION_KEY = process.env.CRYPTO_SECRET 
+  ? Buffer.from(process.env.CRYPTO_SECRET, 'hex') 
+  : crypto.randomBytes(32); 
 
-  if (!secret) {
-    throw new Error("CRYPTO_SECRET is not defined in environment variables");
-  }
+const ALGORITHM = "aes-256-cbc";
 
-  const secretKey = Buffer.from(secret, "hex");
-
-  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+/**
+ * Encrypts a text string.
+ * @param {string} text 
+ * @returns {{ encryptedData: string, iv: string }}
+ */
+export const encrypt = (text) => {
+  const iv = crypto.randomBytes(16);
+  const cipher = crypto.createCipheriv(ALGORITHM, ENCRYPTION_KEY, iv);
   let encrypted = cipher.update(text, "utf8", "hex");
   encrypted += cipher.final("hex");
-  return encrypted;
+  return {
+    encryptedData: encrypted,
+    iv: iv.toString("hex"),
+  };
 };
 
-export default encrypt;
+/**
+ * Decrypts an encrypted text string.
+ * @param {string} encryptedData 
+ * @param {string} iv 
+ * @returns {string}
+ */
+export const decrypt = (encryptedData, iv) => {
+  const decipher = crypto.createDecipheriv(ALGORITHM, ENCRYPTION_KEY, Buffer.from(iv, "hex"));
+  let decrypted = decipher.update(encryptedData, "hex", "utf8");
+  decrypted += decipher.final("utf8");
+  return decrypted;
+};

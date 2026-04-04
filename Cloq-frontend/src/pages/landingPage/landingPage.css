@@ -1,61 +1,133 @@
-.landing {
-  background: #0d0d0d;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-width: 100%;
+/* ── Landing Page ───────────────────────────── */
+.landing-page {
+  min-height: 100vh; background: #060b14;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
 }
 
-.landing-content {
-  text-align: center;
+/* Blobs */
+.landing-blob { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; opacity: .5; }
+.lb-1 { width: 500px; height: 500px; top: -100px; left: -100px; background: radial-gradient(circle,#2563eb18,transparent); }
+.lb-2 { width: 400px; height: 400px; bottom: 0; right: 0;   background: radial-gradient(circle,#7c3aed18,transparent); }
+.lb-3 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle,#0ea5e912,transparent); }
+
+/* Navbar */
+.landing-nav {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.landing-nav-logo { display: flex; align-items: center; gap: 10px; }
+.landing-logo-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg,#3b82f6,#7c3aed);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(59,130,246,.4);
+}
+.landing-logo-icon svg { width: 18px; height: 18px; color: #fff; }
+.landing-nav-logo span { font-size: 20px; font-weight: 800; }
+.landing-nav-links { display: flex; align-items: center; gap: 12px; }
+.landing-login-btn {
+  padding: 9px 20px; border-radius: 10px;
+  background: transparent; border: 1px solid rgba(100,116,139,.4);
+  color: #94a3b8; font-size: 13px; font-weight: 600; font-family: inherit;
+  cursor: pointer; text-decoration: none;
+  transition: all .25s;
+}
+.landing-login-btn:hover { border-color: #64748b; color: #e2e8f0; }
+.landing-signup-btn {
+  padding: 9px 20px; border-radius: 10px;
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: #fff; font-size: 13px; font-weight: 700; font-family: inherit;
+  cursor: pointer; text-decoration: none; border: none;
+  box-shadow: 0 0 18px rgba(37,99,235,.4);
+  transition: all .25s;
+}
+.landing-signup-btn:hover { box-shadow: 0 0 28px rgba(37,99,235,.6); transform: translateY(-1px); }
+
+/* Hero */
+.landing-hero {
+  position: relative; z-index: 5;
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 80px 24px 60px;
+}
+.landing-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 99px;
+  background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+  font-size: 12px; color: #60a5fa; font-weight: 600;
+  margin-bottom: 28px; animation: fadeIn .8s ease-out;
+}
+.landing-pill svg { width: 13px; height: 13px; }
+.landing-pill-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #3b82f6;
+  animation: blink 1.5s ease-in-out infinite;
 }
 
-.landing-content h1 {
-  font-size: 60px;
-  font-weight: bold;
-  letter-spacing: 4px;
+.landing-hero h1 {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 900; line-height: 1.05;
+  color: #fff; letter-spacing: -.02em;
+  margin-bottom: 22px;
+  animation: slideUp .7s ease-out;
+}
+.landing-hero h1 span { display: block; }
+
+.landing-hero p {
+  font-size: clamp(15px, 2vw, 18px); color: #64748b;
+  max-width: 520px; line-height: 1.7;
+  margin-bottom: 40px; animation: slideUp .7s ease-out .1s both;
 }
 
-.landing-content p {
-  margin-top: 10px;
-  font-size: 20px;
-  color: #bbbbbb;
+.landing-ctas {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center;
+  animation: slideUp .7s ease-out .2s both;
 }
+.landing-cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 14px;
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: #fff; font-size: 15px; font-weight: 700; font-family: inherit;
+  border: none; cursor: pointer; text-decoration: none;
+  box-shadow: 0 0 28px rgba(37,99,235,.5);
+  transition: all .25s;
+}
+.landing-cta-primary:hover { box-shadow: 0 0 42px rgba(37,99,235,.7); transform: translateY(-2px); }
+.landing-cta-primary svg { width: 18px; height: 18px; }
+.landing-cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 14px;
+  background: transparent; border: 1px solid rgba(100,116,139,.35);
+  color: #94a3b8; font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer; text-decoration: none; transition: all .25s;
+}
+.landing-cta-secondary:hover { border-color: #64748b; color: #e2e8f0; background: rgba(255,255,255,.04); }
 
-.landing-buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+/* Features */
+.landing-features {
+  position: relative; z-index: 5;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  padding: 0 40px 80px;
+  animation: slideUp .7s ease-out .3s both;
 }
+@media(max-width:767px){ .landing-features { grid-template-columns: 1fr; padding: 0 20px 60px; } }
 
-.login-btn,
-.signup-btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s ease;
+.feature-card {
+  border-radius: 20px; padding: 28px;
+  background: rgba(15,26,46,.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.06);
+  transition: all .3s;
 }
+.feature-card:hover { border-color: rgba(59,130,246,.2); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
 
-.login-btn {
-  background: #4a8cff;
-  color: white;
+.feature-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
 }
-
-.login-btn:hover {
-  background: #3371e3;
-}
-
-.signup-btn {
-  background: #ff5c5c;
-  color: white;
-}
-
-.signup-btn:hover {
-  background: #e44949;
-}
+.feature-icon svg { width: 24px; height: 24px; color: #fff; }
+.feature-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.feature-card p  { font-size: 13px; color: #64748b; line-height: 1.6; }
