@@ -1,0 +1,115 @@
+/* ── ShareAccess ───────────────────────────── */
+.share-page {
+  min-height: 100vh; background: #060b14;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; position: relative; overflow: hidden;
+}
+.share-blob { position: absolute; width: 400px; height: 400px; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: .5; }
+.share-blob-1 { top: 15%; left: 15%; background: radial-gradient(circle,#2563eb18,transparent); }
+.share-blob-2 { bottom: 15%; right: 15%; background: radial-gradient(circle,#7c3aed18,transparent); }
+
+.share-container { width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 24px; }
+
+/* Logo */
+.share-logo { display: flex; flex-direction: column; align-items: center; animation: slideUp .4s ease-out; }
+.share-logo-icon {
+  width: 48px; height: 48px; border-radius: 16px;
+  background: linear-gradient(135deg,#3b82f6,#7c3aed);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+  box-shadow: 0 0 28px rgba(59,130,246,.4);
+}
+.share-logo-icon svg { width: 24px; height: 24px; color: #fff; }
+.share-logo h1 { font-size: 24px; font-weight: 800; }
+.share-logo p  { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+/* Shared cards */
+.share-card {
+  border-radius: 20px; padding: 32px;
+  background: rgba(15,26,46,.85); backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,.06);
+  animation: slideUp .4s ease-out;
+}
+.share-card-blue  { border-color: rgba(59,130,246,.2);  box-shadow: 0 0 40px rgba(59,130,246,.08); }
+.share-card-purple{ border-color: rgba(139,92,246,.2); box-shadow: 0 0 40px rgba(139,92,246,.08); }
+.share-card-warn  { border-color: rgba(251,191,36,.15); }
+.share-card-error { border-color: rgba(244,63,94,.2); }
+
+/* Loading */
+.share-loading { text-align: center; }
+.share-spinner { width: 32px; height: 32px; color: #60a5fa; animation: spin .8s linear infinite; margin: 0 auto 12px; }
+.share-spinner svg { width: 32px; height: 32px; }
+.share-loading p { font-size: 13px; color: #64748b; }
+
+/* State cards – locked / expired / error */
+.share-state { text-align: center; }
+.share-state-icon { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.share-state-icon svg { width: 28px; height: 28px; }
+.share-state h2 { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.share-state p  { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+.locked-icon-wrap { background: rgba(244,63,94,.1); border: 1px solid rgba(244,63,94,.2); color: #fb7185; }
+.warn-icon-wrap   { background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.2); color: #fbbf24; }
+.error-icon-wrap  { background: rgba(244,63,94,.1); border: 1px solid rgba(244,63,94,.2); color: #fb7185; }
+
+.share-timer-box { background: rgba(244,63,94,.05); border: 1px solid rgba(244,63,94,.15); border-radius: 12px; padding: 16px; text-align: center; }
+.share-timer-label { font-size: 11px; color: #fb7185; font-weight: 600; margin-bottom: 10px; }
+.share-timer-date  { font-size: 11px; color: #475569; margin-top: 8px; }
+
+/* Password gate */
+.share-gate h2 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.share-gate p  { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+.share-gate svg { display: block; width: 40px; height: 40px; color: #60a5fa; margin: 0 auto 16px; }
+.share-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.share-field label { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .07em; }
+.share-input {
+  width: 100%; background: #0a1120;
+  border: 1px solid rgba(100,116,139,.35); border-radius: 11px;
+  padding: 12px 14px; font-size: 13px; color: #fff; font-family: inherit; outline: none;
+  transition: border-color .25s;
+}
+.share-input:focus { border-color: rgba(59,130,246,.5); }
+.share-input::placeholder { color: #334155; }
+.share-unlock-btn {
+  width: 100%; padding: 13px; border-radius: 11px;
+  background: linear-gradient(135deg,#2563eb,#3b82f6); color: #fff;
+  font-size: 14px; font-weight: 700; font-family: inherit;
+  border: none; cursor: pointer; transition: all .25s;
+}
+.share-unlock-btn:hover { opacity: .9; transform: translateY(-1px); }
+
+/* Success */
+.share-success { display: flex; flex-direction: column; gap: 16px; }
+.share-item-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.share-item-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: #60a5fa;
+}
+.share-item-icon svg { width: 18px; height: 18px; }
+.share-item-title h3 { font-size: 15px; font-weight: 700; color: #fff; }
+.share-item-title p  { font-size: 11px; color: #64748b; text-transform: capitalize; }
+
+.share-content-label { font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+.share-content-actions { display: flex; gap: 8px; }
+.share-small-btn { display: flex; align-items: center; gap: 4px; padding: 6px 11px; border-radius: 8px; font-size: 11px; font-weight: 600; font-family: inherit; border: none; cursor: pointer; transition: all .2s; }
+.share-small-btn svg { width: 12px; height: 12px; }
+.scb-reveal { background: rgba(100,116,139,.12); color: #94a3b8; }
+.scb-copy   { background: rgba(59,130,246,.1);   color: #60a5fa; }
+.scb-copied { background: rgba(52,211,153,.1);   color: #34d399; }
+
+.share-content-box {
+  background: #0a1120; border: 1px solid rgba(100,116,139,.2);
+  border-radius: 12px; padding: 18px;
+  font-family: 'Courier New', monospace; font-size: 13px;
+  color: #e2e8f0; white-space: pre-wrap; word-break: break-words;
+  line-height: 1.7; position: relative; min-height: 60px;
+}
+.share-content-box.blurred { filter: blur(7px); user-select: none; }
+.share-reveal-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.share-reveal-btn { display: flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 9px; font-size: 13px; font-weight: 700; font-family: inherit; background: rgba(10,17,32,.85); backdrop-filter: blur(8px); border: 1px solid rgba(59,130,246,.3); color: #60a5fa; cursor: pointer; }
+.share-reveal-btn svg { width: 14px; height: 14px; }
+.share-meta { font-size: 11px; color: #475569; margin-top: 12px; }
+
+.share-footer { text-align: center; font-size: 12px; color: #334155; }
+.share-footer span { display: inline-block; }

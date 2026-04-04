@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import connectDB from "./config/db.js";
 import vaultRoutes from "./routes/vaultRoutes.js";
+import shareRoutes from "./routes/shareRoutes.js";
+import logRoutes from "./routes/logRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +21,8 @@ connectDB();
 
 // routes
 app.use("/api/vault", vaultRoutes);
+app.use("/api/share", shareRoutes);
+app.use("/api/logs", logRoutes);
 
 // base route
 app.get("/", (req, res) => {

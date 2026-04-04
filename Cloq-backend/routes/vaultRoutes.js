@@ -1,24 +1,13 @@
 import express from "express";
 import { firebaseAuth } from "../middlewares/authMiddleware.js";
-import { ensureUserExists } from "../controllers/userController.js";
-import { addPassword, getVault } from "../controllers/vaultController.js";
+import { createVaultItem, getVaultItems, getVaultItemById, deleteVaultItem } from "../controllers/vaultController.js";
 
 const router = express.Router();
 
-// Add a password to vault
-router.post(
-  "/add",
-  firebaseAuth,
-  ensureUserExists,
-  addPassword
-);
-
-// Get all vault entries
-router.get(
-  "/",
-  firebaseAuth,
-  ensureUserExists,
-  getVault
-);
+// CRUD
+router.post("/add", firebaseAuth, createVaultItem);
+router.get("/", firebaseAuth, getVaultItems);
+router.get("/:id", firebaseAuth, getVaultItemById);
+router.delete("/:id", firebaseAuth, deleteVaultItem);
 
 export default router;

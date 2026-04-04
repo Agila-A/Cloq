@@ -1,0 +1,166 @@
+/* ── CreateVault ───────────────────────────── */
+.create-page { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; animation: slideUp .4s ease-out; }
+
+.create-header h1 { font-size: 24px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 10px; }
+.create-header h1 svg { width: 24px; height: 24px; color: #60a5fa; }
+.create-header p { font-size: 13px; color: #64748b; margin-top: 4px; }
+
+.create-panel {
+  border-radius: 16px; padding: 24px;
+  background: rgba(15,26,46,.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.create-panel h3 {
+  font-size: 11px; font-weight: 700; color: #94a3b8;
+  text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 16px;
+}
+
+/* Type selector */
+.type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.type-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 18px 12px; border-radius: 14px;
+  background: rgba(10,17,32,.6);
+  border: 1px solid rgba(100,116,139,.2);
+  cursor: pointer; font-family: inherit; transition: all .2s;
+  text-align: center;
+}
+.type-btn:hover { border-color: rgba(59,130,246,.4); background: rgba(30,45,82,.4); }
+.type-btn.active {
+  border-color: rgba(59,130,246,.5);
+  background: rgba(59,130,246,.1);
+  box-shadow: 0 0 20px rgba(59,130,246,.1);
+}
+.type-btn svg { width: 22px; height: 22px; }
+.type-btn span { font-size: 12px; font-weight: 700; display: block; }
+.type-btn small { font-size: 10px; color: #64748b; font-weight: 400; display: block; margin-top: 2px; }
+.type-btn.active span { color: #93c5fd; }
+.type-btn span { color: #94a3b8; }
+
+/* Fields */
+.create-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.create-field:last-child { margin-bottom: 0; }
+.create-label {
+  font-size: 11px; font-weight: 700; color: #94a3b8;
+  text-transform: uppercase; letter-spacing: .08em;
+}
+.create-input-wrap { position: relative; }
+.create-input-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: #475569; pointer-events: none; display: flex;
+}
+.create-input-icon svg { width: 16px; height: 16px; }
+
+.create-input {
+  width: 100%; background: #0a1120;
+  border: 1px solid rgba(100,116,139,.35); border-radius: 12px;
+  padding: 12px 16px 12px 44px;
+  font-size: 14px; color: #fff; font-family: inherit; outline: none;
+  transition: border-color .25s, box-shadow .25s;
+}
+.create-input-no-icon { padding-left: 16px; }
+.create-input::placeholder { color: #334155; }
+.create-input:focus { border-color: rgba(59,130,246,.55); box-shadow: 0 0 0 3px rgba(59,130,246,.08); }
+
+.create-textarea {
+  width: 100%; background: #0a1120;
+  border: 1px solid rgba(100,116,139,.35); border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px; color: #fff; font-family: 'Courier New', monospace;
+  outline: none; resize: vertical; min-height: 140px;
+  transition: border-color .25s, box-shadow .25s;
+}
+.create-textarea::placeholder { color: #334155; }
+.create-textarea:focus { border-color: rgba(59,130,246,.55); box-shadow: 0 0 0 3px rgba(59,130,246,.08); }
+
+/* AI warning */
+.ai-warning {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: #fbbf24;
+  background: rgba(251,191,36,.07); border: 1px solid rgba(251,191,36,.2);
+  border-radius: 9px; padding: 9px 12px; margin-top: 8px;
+}
+.ai-warning svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* Lock toggle */
+.lock-row { display: flex; align-items: center; justify-content: space-between; }
+.lock-info h4 { font-size: 14px; font-weight: 700; color: #f1f5f9; display: flex; align-items: center; gap: 7px; }
+.lock-info h4 svg { width: 16px; height: 16px; color: #fb7185; }
+.lock-info p { font-size: 12px; color: #64748b; margin-top: 3px; }
+
+/* Toggle switch — pure CSS, no <input> hidden tricks */
+.toggle-switch {
+  position: relative; width: 52px; height: 28px; flex-shrink: 0; cursor: pointer;
+}
+.toggle-switch input {
+  position: absolute; opacity: 0; width: 100%; height: 100%;
+  cursor: pointer; margin: 0; z-index: 1;
+}
+.toggle-track {
+  position: absolute; inset: 0;
+  background: #1e293b;
+  border-radius: 99px;
+  border: 1px solid rgba(100,116,139,.35);
+  transition: background .3s, border-color .3s;
+  pointer-events: none;
+}
+.toggle-track::after {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  top: 3px; left: 3px;
+  background: #64748b;
+  border-radius: 50%;
+  transition: transform .3s ease, background .3s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,.4);
+}
+.toggle-switch input:checked ~ .toggle-track {
+  background: #e11d48;
+  border-color: #be123c;
+}
+.toggle-switch input:checked ~ .toggle-track::after {
+  transform: translateX(24px);
+  background: #fff;
+}
+
+/* Dark datetime-local */
+.create-input[type="datetime-local"] {
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+.lock-datetime-wrap { margin-top: 16px; animation: slideUp .3s ease-out; }
+.lock-hint { font-size: 11px; color: rgba(251,113,133,.8); margin-top: 6px; display: flex; align-items: center; gap: 5px; }
+.lock-hint svg { width: 12px; height: 12px; }
+
+/* Form buttons */
+.create-form-actions { display: flex; gap: 12px; }
+.btn-cancel {
+  flex: 1; padding: 14px; border-radius: 12px;
+  background: #1e293b; border: 1px solid rgba(100,116,139,.3); color: #94a3b8;
+  font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;
+  transition: all .2s;
+}
+.btn-cancel:hover { background: #293548; color: #e2e8f0; }
+.btn-save {
+  flex: 1.5; padding: 14px; border-radius: 12px;
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: #fff; font-size: 14px; font-weight: 700; font-family: inherit;
+  border: none; cursor: pointer;
+  box-shadow: 0 0 24px rgba(37,99,235,.4);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all .25s;
+}
+.btn-save:hover:not(:disabled) { box-shadow: 0 0 36px rgba(37,99,235,.6); transform: translateY(-1px); }
+.btn-save:disabled { opacity: .6; cursor: not-allowed; }
+.btn-save svg { width: 16px; height: 16px; }
+
+.create-error {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: #fb7185;
+  background: rgba(244,63,94,.08); border: 1px solid rgba(244,63,94,.2);
+  border-radius: 12px; padding: 12px 16px;
+}
+.create-error svg { width: 15px; height: 15px; flex-shrink: 0; }
